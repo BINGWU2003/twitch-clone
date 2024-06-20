@@ -1,3 +1,12 @@
+/*
+ * @Author: BINGWU
+ * @Date: 2024-06-11 17:16:16
+ * @LastEditors: BINGWU HuJiaCheng2003@163.com
+ * @LastEditTime: 2024-06-11 17:25:29
+ * @FilePath: \twitch-clone\app\layout.tsx
+ * @Describe: 
+ * @Mark: ૮(˶ᵔ ᵕ ᵔ˶)ა
+ */
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
