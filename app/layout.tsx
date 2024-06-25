@@ -2,7 +2,16 @@
  * @Author: BINGWU
  * @Date: 2024-06-11 17:16:16
  * @LastEditors: BINGWU HuJiaCheng2003@163.com
- * @LastEditTime: 2024-06-11 17:25:29
+ * @LastEditTime: 2024-06-25 23:31:59
+ * @FilePath: \twitch-clone\app\layout.tsx
+ * @Describe: 
+ * @Mark: ૮(˶ᵔ ᵕ ᵔ˶)ა
+ */
+/*
+ * @Author: BINGWU
+ * @Date: 2024-06-11 17:16:16
+ * @LastEditors: BINGWU HuJiaCheng2003@163.com
+ * @LastEditTime: 2024-06-25 23:18:08
  * @FilePath: \twitch-clone\app\layout.tsx
  * @Describe: 
  * @Mark: ૮(˶ᵔ ᵕ ᵔ˶)ა
@@ -10,7 +19,13 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-
+import {
+  ClerkProvider,
+  SignInButton,
+  SignedIn,
+  SignedOut,
+  UserButton
+} from '@clerk/nextjs'
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -24,8 +39,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
-    </html>
+    <ClerkProvider>
+      <html lang='en' className='h-full'>
+        <body className='h-full'>
+          <div>
+            <UserButton> </UserButton>
+          </div>
+          {children}
+        </body>
+      </html>
+    </ClerkProvider>
   );
 }
