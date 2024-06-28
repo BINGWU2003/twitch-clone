@@ -1,8 +1,8 @@
 /*
  * @Author: BINGWU
  * @Date: 2024-06-11 17:16:16
- * @LastEditors: BINGWU HuJiaCheng2003@163.com
- * @LastEditTime: 2024-06-25 23:31:59
+ * @LastEditors: hujiacheng hujiacheng@iipcloud.com
+ * @LastEditTime: 2024-06-28 23:42:46
  * @FilePath: \twitch-clone\app\layout.tsx
  * @Describe: 
  * @Mark: ૮(˶ᵔ ᵕ ᵔ˶)ა
@@ -17,15 +17,15 @@
  * @Mark: ૮(˶ᵔ ᵕ ᵔ˶)ა
  */
 import type { Metadata } from "next";
+import { dark } from "@clerk/themes";
+import { ThemeProvider } from "@/components/theme-provider";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import {
   ClerkProvider,
-  SignInButton,
-  SignedIn,
-  SignedOut,
   UserButton
 } from '@clerk/nextjs'
+
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -39,13 +39,19 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ClerkProvider>
+    <ClerkProvider
+      appearance={{
+        baseTheme: dark
+      }}>
       <html lang='en' className='h-full'>
         <body className='h-full'>
-          <div>
+          <ThemeProvider
+            attribute="class"
+            defaultTheme="dark">
             <UserButton> </UserButton>
-          </div>
-          {children}
+            <div>layout</div>
+            {children}
+          </ThemeProvider>
         </body>
       </html>
     </ClerkProvider>
