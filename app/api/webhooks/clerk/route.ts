@@ -1,16 +1,16 @@
 /*
  * @Author: BINGWU
  * @Date: 2024-06-29 17:58:46
- * @LastEditors: hujiacheng hujiacheng@iipcloud.com
- * @LastEditTime: 2024-06-29 17:59:22
- * @FilePath: \twitch-clone\app\api\webhooks\route.ts
+ * @LastEditors: BINGWU HuJiaCheng2003@163.com
+ * @LastEditTime: 2024-06-29 21:46:39
+ * @FilePath: \twitch-clone\app\api\webhooks\clerk\route.ts
  * @Describe: 
  * @Mark: ૮(˶ᵔ ᵕ ᵔ˶)ა
  */
 import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { WebhookEvent } from '@clerk/nextjs/server'
-
+import { prisma } from '@/lib/db'
 export async function POST(req: Request) {
 
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the endpoint
@@ -60,8 +60,55 @@ export async function POST(req: Request) {
   // For this guide, you simply log the payload to the console
   const { id } = evt.data;
   const eventType = evt.type;
+  if (eventType === 'user.created') {
+    const { id, username, image_url } = payload.data
+    await prisma.user.create({
+      data: {
+        externalUserId: id,
+        username,
+        imageUrl: image_url,
+      }
+    })
+  } else if (eventType === 'user.updated') {
+    const { id, username, image_url } = payload.data
+    const currentUser = await prisma.user.findUnique({
+      where: {
+        externalUserId: id,
+      }
+    })
+    if (!currentUser) {
+      return new Response('User not found', {
+        status: 404
+      })
+    } else {
+      await prisma.user.update({
+        where: {
+          externalUserId: id,
+        },
+        data: {
+          username,
+          imageUrl: image_url,
+        }
+      })
+    }
+  } else if(eventType === 'user.deleted'){
+    const { id } = payload.data
+    const currentUser = await prisma.user.findUnique({
+      where: {
+        externalUserId: id,
+    }})
+    if(!currentUser){
+      return new Response('User not found', {
+        status: 404
+      })
+    } else {
+      await prisma.user.delete({
+        where: {
+          externalUserId: id,
+        }
+      })
+    }
+  }
   console.log(`Webhook with and ID of ${id} and type of ${eventType}`)
-  console.log('Webhook body:', body)
-
   return new Response('', { status: 200 })
 }
