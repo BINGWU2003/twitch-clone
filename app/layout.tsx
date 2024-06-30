@@ -1,8 +1,8 @@
 /*
  * @Author: BINGWU
  * @Date: 2024-06-11 17:16:16
- * @LastEditors: hujiacheng hujiacheng@iipcloud.com
- * @LastEditTime: 2024-06-28 23:42:46
+ * @LastEditors: BINGWU HuJiaCheng2003@163.com
+ * @LastEditTime: 2024-06-29 22:14:47
  * @FilePath: \twitch-clone\app\layout.tsx
  * @Describe: 
  * @Mark: ૮(˶ᵔ ᵕ ᵔ˶)ა
@@ -48,9 +48,9 @@ export default function RootLayout({
           <ThemeProvider
             attribute="class"
             defaultTheme="dark">
-            <UserButton> </UserButton>
-            <div>layout</div>
+
             {children}
+            <UserButton> </UserButton>
           </ThemeProvider>
         </body>
       </html>
