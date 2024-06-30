@@ -3,11 +3,10 @@
 @tailwind utilities;
 
 
-/* html,
+html,
 body {
   height: 100%;
-  @apply bg-neutral-900/80;
-} */
+}
 
 @layer base {
   :root {

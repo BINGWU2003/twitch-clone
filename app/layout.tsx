@@ -2,7 +2,7 @@
  * @Author: BINGWU
  * @Date: 2024-06-11 17:16:16
  * @LastEditors: BINGWU HuJiaCheng2003@163.com
- * @LastEditTime: 2024-06-29 22:14:47
+ * @LastEditTime: 2024-06-30 16:09:37
  * @FilePath: \twitch-clone\app\layout.tsx
  * @Describe: 
  * @Mark: ૮(˶ᵔ ᵕ ᵔ˶)ა
@@ -22,8 +22,7 @@ import { ThemeProvider } from "@/components/theme-provider";
 import { Inter } from "next/font/google";
 import "./globals.css";
 import {
-  ClerkProvider,
-  UserButton
+  ClerkProvider
 } from '@clerk/nextjs'
 
 const inter = Inter({ subsets: ["latin"] });
@@ -43,14 +42,13 @@ export default function RootLayout({
       appearance={{
         baseTheme: dark
       }}>
-      <html lang='en' className='h-full'>
-        <body className='h-full'>
+      <html lang='en' suppressHydrationWarning>
+        <body>
           <ThemeProvider
             attribute="class"
             defaultTheme="dark">
 
             {children}
-            <UserButton> </UserButton>
           </ThemeProvider>
         </body>
       </html>
