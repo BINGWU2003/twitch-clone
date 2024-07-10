@@ -23,16 +23,12 @@ export const Actions = async () => {
                 <div className="flex items-center">
                   <Clapperboard></Clapperboard>
                   <div className="ml-2 text-sm">控制面板</div>
-
                 </div>
               </Link>
               <div className="ml-6 flex items-center">
                 <UserButton></UserButton>
               </div>
             </div>
-
-
-
           )
         }
       </div>

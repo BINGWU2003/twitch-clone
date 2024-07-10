@@ -1,5 +1,5 @@
 import Navbar from "./_components/navbar"
-
+import Sidebar from "./_components/siderbar"
 export default function BrowseLayout({
   children,
 }: {
@@ -10,7 +10,10 @@ export default function BrowseLayout({
     <>
       <div>
         <Navbar></Navbar>
-        {children}
+        <div>
+          <Sidebar></Sidebar>
+          {children}
+        </div>
       </div>
     </>
   )
