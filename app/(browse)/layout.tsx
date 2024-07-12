@@ -1,5 +1,6 @@
 import Navbar from "./_components/navbar"
 import Sidebar from "./_components/siderbar"
+import { Container } from "./_components/container/container"
 export default function BrowseLayout({
   children,
 }: {
@@ -8,11 +9,13 @@ export default function BrowseLayout({
 
   return (
     <>
-      <div>
+      <div className="h-full">
         <Navbar></Navbar>
-        <div>
+        <div className="h-full flex">
           <Sidebar></Sidebar>
-          {children}
+          <Container>
+            {children}
+          </Container>
         </div>
       </div>
     </>

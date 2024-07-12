@@ -1,3 +1,12 @@
+/*
+ * @Author: BINGWU
+ * @Date: 2024-06-30 16:35:19
+ * @LastEditors: BINGWU HuJiaCheng2003@163.com
+ * @LastEditTime: 2024-07-12 23:38:44
+ * @FilePath: \twitch-clone\app\(browse)\_components\navbar\actions.tsx
+ * @Describe: 
+ * @Mark: ૮(˶ᵔ ᵕ ᵔ˶)ა
+ */
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { currentUser } from "@clerk/nextjs/server"
@@ -11,7 +20,7 @@ export const Actions = async () => {
       <div>
         {
           !user && (
-            <Button>
+            <Button asChild>
               <SignInButton></SignInButton>
             </Button>
           )
