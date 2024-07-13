@@ -1,12 +1,8 @@
-"use client";
-import { User } from "@prisma/client";
+
 import { UserItem } from "./user-item";
-interface RecommendedProps {
-  recommended: Array<User>;
-}
-
-
-export const Recommended = ({ recommended }: RecommendedProps) => {
+import { getRecommended } from "@/lib/recommended-service"
+export const Recommended = async () => {
+  const recommended = await getRecommended()
   return (
     <>
       {

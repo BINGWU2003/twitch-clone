@@ -2,14 +2,16 @@
 import { Toggle } from "./toggle"
 import { Wrapper } from "./warpper"
 import { Recommended } from "./recommended"
-import { getRecommended } from "@/lib/recommended-service"
+import { Suspense } from "react"
+import { UserItemSkeleton } from "./user-item"
 export default async function Sidebar() {
-  const recommended = await getRecommended()
   return (
     <>
       <Wrapper>
-        <Toggle></Toggle>
-        <Recommended recommended={recommended}></Recommended>
+        <Suspense fallback={<UserItemSkeleton />}>
+          <Toggle ></Toggle>
+          <Recommended></Recommended>
+        </Suspense>
       </Wrapper>
     </>
   )

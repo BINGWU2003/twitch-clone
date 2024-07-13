@@ -37,7 +37,22 @@ export const UserItem = ({ user: { username, imageUrl }, isLive }: UserItemProps
 }
 
 export const UserItemSkeleton = () => {
+  const { collapsed } = useSidebarStore()
   return (
-    <Skeleton className="w-[100px] h-[20px] rounded-full" />
+
+    [1, 2, 3, 4].map((item, index) => (
+      <div className={cn("flex items-center p-4", {
+        'justify-center': collapsed
+      })} key={index}>
+        <Skeleton className="h-12 w-12 rounded-full" />
+        {
+          !collapsed &&
+          <div className="space-y-2 ml-4">
+            <Skeleton className="h-4 w-36" />
+            <Skeleton className="h-4 w-28" />
+          </div>
+        }
+      </div>
+    ))
   )
 }
