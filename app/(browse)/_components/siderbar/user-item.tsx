@@ -24,7 +24,7 @@ export const UserItem = ({ user: { username, imageUrl }, isLive }: UserItemProps
   return (
     <>
       <Link href={`/${username}`}>
-        <div className={cn("flex justify-between items-center my-2 mx-6", {
+        <div className={cn("flex justify-between items-center my-4 mx-6", {
           'justify-center': collapsed,
         })} >
           <div className="flex items-center">
