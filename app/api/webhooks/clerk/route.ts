@@ -4,7 +4,7 @@
  * @LastEditors: BINGWU HuJiaCheng2003@163.com
  * @LastEditTime: 2024-06-29 22:06:10
  * @FilePath: \twitch-clone\app\api\webhooks\clerk\route.ts
- * @Describe: 
+ * @Describe: 增删改用户时的webhook
  * @Mark: ૮(˶ᵔ ᵕ ᵔ˶)ა
  */
 import { Webhook } from 'svix'
