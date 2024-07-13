@@ -8,6 +8,7 @@ export default async function Sidebar() {
   return (
     <>
       <Wrapper>
+        {/* 骨架屏 */}
         <Suspense fallback={<UserItemSkeleton />}>
           <Toggle ></Toggle>
           <Recommended></Recommended>
