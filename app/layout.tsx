@@ -2,7 +2,7 @@
  * @Author: BINGWU
  * @Date: 2024-06-11 17:16:16
  * @LastEditors: BINGWU HuJiaCheng2003@163.com
- * @LastEditTime: 2024-06-30 16:09:37
+ * @LastEditTime: 2024-07-13 18:10:26
  * @FilePath: \twitch-clone\app\layout.tsx
  * @Describe: 
  * @Mark: ૮(˶ᵔ ᵕ ᵔ˶)ა
@@ -19,13 +19,12 @@
 import type { Metadata } from "next";
 import { dark } from "@clerk/themes";
 import { ThemeProvider } from "@/components/theme-provider";
-import { Inter } from "next/font/google";
 import "./globals.css";
 import {
   ClerkProvider
 } from '@clerk/nextjs'
 
-const inter = Inter({ subsets: ["latin"] });
+
 
 export const metadata: Metadata = {
   title: "Create Next App",
