@@ -1,3 +1,12 @@
+/*
+ * @Author: BINGWU
+ * @Date: 2024-07-13 14:58:31
+ * @LastEditors: BINGWU HuJiaCheng2003@163.com
+ * @LastEditTime: 2024-07-13 22:18:08
+ * @FilePath: \twitch-clone\app\(browse)\_components\siderbar\user-item.tsx
+ * @Describe: 
+ * @Mark: ૮(˶ᵔ ᵕ ᵔ˶)ა
+ */
 "use client";
 import { User } from "@prisma/client"
 import Link from "next/link";
@@ -14,7 +23,7 @@ export const UserItem = ({ user: { username, imageUrl }, isLive }: UserItemProps
   const { collapsed } = useSidebarStore()
   return (
     <>
-      <Link href={''}>
+      <Link href={`/${username}`}>
         <div className={cn("flex justify-between items-center my-2 mx-6", {
           'justify-center': collapsed,
         })} >
