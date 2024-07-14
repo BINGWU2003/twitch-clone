@@ -1,8 +1,8 @@
 /*
  * @Author: BINGWU
  * @Date: 2024-07-13 14:02:18
- * @LastEditors: BINGWU HuJiaCheng2003@163.com
- * @LastEditTime: 2024-07-13 14:12:25
+ * @LastEditors: hujiacheng hujiacheng@iipcloud.com
+ * @LastEditTime: 2024-07-14 18:48:37
  * @FilePath: \twitch-clone\lib\auth-service.ts
  * @Describe: 用户鉴权 
  * @Mark: ૮(˶ᵔ ᵕ ᵔ˶)ა

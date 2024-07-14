@@ -21,7 +21,9 @@ model User {
 
 model Follow {
   id          String   @id @default(uuid())
+  // 订阅者的id
   followerId  String
+  // 被订阅者的id
   followingId String
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt

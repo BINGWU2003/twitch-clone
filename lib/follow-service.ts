@@ -2,9 +2,9 @@
  * @Author: BINGWU
  * @Date: 2024-07-14 16:13:26
  * @LastEditors: hujiacheng hujiacheng@iipcloud.com
- * @LastEditTime: 2024-07-14 16:17:55
+ * @LastEditTime: 2024-07-14 18:51:16
  * @FilePath: \twitch-clone\lib\follow-service.ts
- * @Describe: 判断是不是订阅的用户
+ * @Describe: 订阅相关的接口
  * @Mark: ૮(˶ᵔ ᵕ ᵔ˶)ა
  */
 
@@ -18,18 +18,19 @@ export const isFollowingUser = async (id: string) => {
         id
       }
     })
-    
-    if(!otherUser){
+
+    if (!otherUser) {
       throw new Error('User not found')
     }
-    console.log('otherUser', otherUser);
+    if (self.id === id) {
+      return true
+    }
     const existingFollow = await prisma.follow.findFirst({
       where: {
         followerId: self.id,
         followingId: id
       }
     })
-    console.log('existingFollow', existingFollow);
     return !!existingFollow
   } catch (error) {
     return false
@@ -37,5 +38,44 @@ export const isFollowingUser = async (id: string) => {
 }
 
 
+export const followUser = async (id: string) => {
 
+  try {
+    const self = await getSelf();
+    const otherUser = await prisma.user.findUnique({
+      where: {
+        id
+      }
+    })
+    if (!otherUser) {
+      throw new Error('User not found')
+    }
+    if (self.id === id) {
+      throw new Error('Cannot follow yourself')
+    }
+    const existingFollow = await prisma.follow.findFirst({
+      where: {
+        followerId: self.id,
+        followingId: id
+      }
+    })
+    if (existingFollow) {
+      throw new Error('Already following')
+    }
+    return await prisma.follow.create({
+      data: {
+        followerId: self.id,
+        followingId: id
+      },
+      include: {
+        following: true,
+        follower: true
+      }
+    })
+  } catch (error) {
+    console.log(error);
+
+    throw error
+  }
+}
 
