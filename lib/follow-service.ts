@@ -1,3 +1,13 @@
+/*
+ * @Author: BINGWU
+ * @Date: 2024-07-14 16:13:26
+ * @LastEditors: hujiacheng hujiacheng@iipcloud.com
+ * @LastEditTime: 2024-07-14 16:17:55
+ * @FilePath: \twitch-clone\lib\follow-service.ts
+ * @Describe: 判断是不是订阅的用户
+ * @Mark: ૮(˶ᵔ ᵕ ᵔ˶)ა
+ */
+
 import { prisma } from "./db";
 import { getSelf } from "./auth-service";
 export const isFollowingUser = async (id: string) => {
