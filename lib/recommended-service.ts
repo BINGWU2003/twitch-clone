@@ -2,20 +2,21 @@
 import { prisma } from "./db";
 import { getSelf } from "./auth-service";
 export const getRecommended = async () => {
+  let whereClause = {};
   try {
     const user = await getSelf();
-    const whereClause = user ? {
+    whereClause = {
       NOT: {
         externalUserId: user.externalUserId
       }
-    } : {};
-    return prisma.user.findMany({
-      orderBy: {
-        createdAt: 'desc'
-      },
-      where: whereClause
-    });
+    }
   } catch (error) {
-    return []
+    whereClause = {};
   }
+  return prisma.user.findMany({
+    orderBy: {
+      createdAt: 'desc'
+    },
+    where: whereClause
+  });
 }
