@@ -79,3 +79,39 @@ export const followUser = async (id: string) => {
   }
 }
 
+export const unfollowUser = async (id: string) => {
+  try {
+    const self = await getSelf();
+    const otherUser = await prisma.user.findUnique({
+      where: {
+        id
+      }
+    })
+    if (!otherUser) {
+      throw new Error('User not found')
+    }
+    if (self.id === id) {
+      throw new Error('Cannot unfollow yourself')
+    }
+    const existingFollow = await prisma.follow.findFirst({
+      where: {
+        followerId: self.id,
+        followingId: id
+      }
+    })
+    if (!existingFollow) {
+      throw new Error('Not following')
+    }
+    return await prisma.follow.delete({
+      where: {
+        id: existingFollow.id
+      },
+      include: {
+        following: true,
+        follower: true
+      }
+    })
+  } catch (error) {
+    throw error
+  }
+}
