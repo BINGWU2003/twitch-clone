@@ -50,10 +50,13 @@ export const blockUser = async (id: string) => {
     if (existingBlock) {
       return
     }
-    await prisma.block.create({
+    return await prisma.block.create({
       data: {
         blockerId: self.id,
         blockedId: id
+      },
+      include: {
+        blocked: true
       }
     })
   } catch (error) {
@@ -75,10 +78,21 @@ export const unblockUser = async (id: string) => {
     if (self.id === id) {
       throw new Error('Cannot unblock yourself')
     }
-    await prisma.block.deleteMany({
+    const existingBlock = await prisma.block.findFirst({
       where: {
         blockerId: self.id,
         blockedId: id
+      }
+    })
+    if (!existingBlock) {
+      throw new Error('Not blocking')
+    }
+    return await prisma.block.delete({
+      where: {
+        id: existingBlock.id
+      },
+      include: {
+        blocked: true
       }
     })
   } catch (error) {
