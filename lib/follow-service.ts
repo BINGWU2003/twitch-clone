@@ -37,6 +37,22 @@ export const isFollowingUser = async (id: string) => {
   }
 }
 
+export const getFollowersUsers = async () => {
+  try {
+    const self = await getSelf();
+    const followers = await prisma.follow.findMany({
+      where: {
+        followerId: self.id
+      },
+      include: {
+        following: true
+      }
+    })
+    return followers
+  } catch (error) {
+    return []
+  }
+}
 
 export const followUser = async (id: string) => {
 
