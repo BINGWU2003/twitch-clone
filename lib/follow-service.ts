@@ -2,7 +2,7 @@
  * @Author: BINGWU
  * @Date: 2024-07-14 16:13:26
  * @LastEditors: hujiacheng hujiacheng@iipcloud.com
- * @LastEditTime: 2024-07-14 18:51:16
+ * @LastEditTime: 2024-07-27 17:33:34
  * @FilePath: \twitch-clone\lib\follow-service.ts
  * @Describe: 订阅相关的接口
  * @Mark: ૮(˶ᵔ ᵕ ᵔ˶)ა
@@ -42,7 +42,15 @@ export const getFollowersUsers = async () => {
     const self = await getSelf();
     const followers = await prisma.follow.findMany({
       where: {
-        followerId: self.id
+        followerId: self.id,
+        // 不能获取被屏蔽的用户
+        following: {
+          blockedBy: {
+            none: {
+              blockerId: self.id
+            }
+          }
+        }
       },
       include: {
         following: true

@@ -60,6 +60,8 @@ export const blockUser = async (id: string) => {
       }
     })
   } catch (error) {
+    console.log(error);
+    
     throw new Error('Block failed')
   }
 }

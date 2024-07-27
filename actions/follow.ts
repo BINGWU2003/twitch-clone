@@ -1,5 +1,14 @@
+/*
+ * @Author: BINGWU
+ * @Date: 2024-07-14 17:05:58
+ * @LastEditors: hujiacheng hujiacheng@iipcloud.com
+ * @LastEditTime: 2024-07-27 16:19:29
+ * @FilePath: \twitch-clone\actions\follow.ts
+ * @Describe: 
+ * @Mark: ૮(˶ᵔ ᵕ ᵔ˶)ა
+ */
 "use server";
-import { followUser,unfollowUser } from "@/lib/follow-service";
+import { followUser, unfollowUser } from "@/lib/follow-service";
 import { revalidatePath } from "next/cache";
 
 export const onFollow = async (id: string) => {

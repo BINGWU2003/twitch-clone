@@ -6,9 +6,32 @@ export const getRecommended = async () => {
   try {
     const user = await getSelf();
     whereClause = {
-      NOT: {
-        externalUserId: user.externalUserId
-      }
+      AND: [
+        {
+          NOT: {
+            externalUserId: user.externalUserId
+          }
+        },
+        {
+          NOT: {
+            followedBy: {
+              some: {
+                followerId: user.id
+              }
+            }
+          }
+        },
+        {
+          NOT: {
+            blockedBy: {
+              some: {
+                blockerId: user.id
+              }
+            }
+          }
+        }
+      ]
+
     }
   } catch (error) {
     whereClause = {};
