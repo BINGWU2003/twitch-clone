@@ -11,6 +11,7 @@ import { Webhook } from 'svix'
 import { headers } from 'next/headers'
 import { WebhookEvent } from '@clerk/nextjs/server'
 import { prisma } from '@/lib/db'
+import { create } from 'domain'
 export async function POST(req: Request) {
 
   // You can find this in the Clerk Dashboard -> Webhooks -> choose the endpoint
@@ -62,11 +63,17 @@ export async function POST(req: Request) {
   const eventType = evt.type;
   if (eventType === 'user.created') {
     const { id, username, image_url } = payload.data
+    console.log(eventType);
     await prisma.user.create({
       data: {
         externalUserId: id,
         username,
         imageUrl: image_url,
+        stream: {
+          create: {
+            name: `${username}'s stream`,
+          }
+        }
       }
     })
   } else if (eventType === 'user.updated') {
@@ -91,13 +98,14 @@ export async function POST(req: Request) {
         }
       })
     }
-  } else if(eventType === 'user.deleted'){
+  } else if (eventType === 'user.deleted') {
     const { id } = payload.data
     const currentUser = await prisma.user.findUnique({
       where: {
         externalUserId: id,
-    }})
-    if(!currentUser){
+      }
+    })
+    if (!currentUser) {
       return new Response('User not found', {
         status: 404
       })
