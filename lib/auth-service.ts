@@ -27,3 +27,24 @@ export const getSelf = async () => {
   }
   return user
 }
+
+export const getSelfByUsername = async (username: string) => {
+  // 登陆才能看
+  const self = await currentUser();
+  if (!self) {
+    throw new Error("unAuthorized");
+  }
+  const user = await prisma.user.findUnique({
+    where: {
+      username
+    }
+  })
+  if (!user) {
+    throw new Error('User not found')
+  }
+  // 只能看自己的面板
+  if (user.externalUserId !== self.id) {
+    throw new Error('unAuthorized')
+  }
+  return user
+}

@@ -1,9 +1,9 @@
 /*
  * @Author: BINGWU
- * @Date: 2024-07-14 16:02:58
+ * @Date: 2024-07-28 22:06:14
  * @LastEditors: hujiacheng hujiacheng@iipcloud.com
- * @LastEditTime: 2024-07-28 22:11:24
- * @FilePath: \twitch-clone\app\(browse)\_components\siderbar\hitn.tsx
+ * @LastEditTime: 2024-07-28 22:12:02
+ * @FilePath: \twitch-clone\app\(dashboard)\u\[username]\_components\siderbar\hitn.tsx
  * @Describe: 
  * @Mark: ૮(˶ᵔ ᵕ ᵔ˶)ა
  */
