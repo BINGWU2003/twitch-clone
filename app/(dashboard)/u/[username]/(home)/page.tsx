@@ -15,7 +15,7 @@ interface CreatorPageProps {
 const CreatorPage = ({ } : CreatorPageProps) => {
   return (
     <div>
-      <h1>Creator Page</h1>
+      <h1>Stream</h1>
     </div>
   )
 }
